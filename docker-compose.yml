@@ -1,6 +1,6 @@
 services:
   db:
-    container_name: postgres_container2
+    container_name: postgres_container1
     image: postgres
     environment:
       POSTGRES_USER: root
@@ -9,8 +9,12 @@ services:
     ports:
       - "5432:5432"
     volumes: 
-  
+      - ./db/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql  
+      - ./db/insert_data.sql:/docker-entrypoint-initdb.d/insert_data.sql
+     
   adminer:
     image: adminer
     ports:
       - "8080:8080"
+
+
