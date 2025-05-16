@@ -1,0 +1,24 @@
+{
+  "name": "quiz-app",
+  "version": "1.0.0",
+  "description": "frontend -  HTML CSS AND JS \r BACKEND -  Nodejs/Express\r Db - Postgres",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theZoid9/Quiz-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theZoid9/Quiz-app/issues"
+  },
+  "homepage": "https://github.com/theZoid9/Quiz-app#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
