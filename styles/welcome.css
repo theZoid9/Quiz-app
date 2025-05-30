@@ -15,7 +15,7 @@
 }
 
 .block {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(184, 184, 184);
     display: flex;
     justify-content: center;
     min-height: 100vh;
@@ -29,7 +29,7 @@
     height: 160px;
     padding: 100px;
     margin: 20px;
-    background-color: rgb(184, 184, 184);
+    background-color: rgb(221, 221, 221);
     border: 6px solid;
     border-radius: 800px;
 }
