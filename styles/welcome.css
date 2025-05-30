@@ -1,14 +1,17 @@
 * {
-    background-color: ghostwhite;
+
     margin: 1px;
     padding: 0;
 
 }
 
 .head {
-    width: 200px;
+    position: relative;
+    right: 35px;
+    width: 350px;
     font-size: 1.4rem;
-    padding-bottom: 40px;
+    padding-bottom: 20px;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .block {
@@ -20,18 +23,20 @@
 }
 
 .container { 
-    top: 200px;
+    top: 300px;
     left: 200px;
     max-width: 200px;
     height: 160px;
-    padding: 70px;
+    padding: 100px;
     margin: 20px;
-    background-color: ghostwhite;
+    background-color: rgb(184, 184, 184);
     border: 6px solid;
-    border-radius: 20px;
+    border-radius: 800px;
 }
 
 input[type=text]{
+    position: relative;
+    top: 30px;
     width: 90%;
     padding: 10px;
     margin: 5px 0 22px 0;
@@ -41,9 +46,12 @@ input[type=text]{
     border:  2px solid black;
     
 }
-
+button:hover {
+    background-color: rgb(119, 119, 119);
+}
 .btn {
     position: relative;
+    top: 20px;
     left:  50px;
     width: 50%;
     border-radius: 999px;
@@ -51,7 +59,6 @@ input[type=text]{
     background-color: white;
     border:  2px solid black;
     font-weight: 1000;
-    font-style: italic;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
 
 }
