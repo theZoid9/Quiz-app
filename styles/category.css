@@ -1,3 +1,55 @@
-h1 {
-    background-color: aqua;
+
+.block {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    align-items: center;
+}
+
+
+.cat { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 200px;
+    left: 200px;
+    max-width: 200px;
+    min-height: 360px;
+    min-width: 350px;
+    margin: 20px;
+    padding: 20px;
+    background-color: rgb(221, 221, 221);
+    border: 6px solid;
+    border-radius: 20px;
+}
+
+
+.cat .category-btn {
+    padding: 10px;
+    margin: 5px;
+    border: 2px solid;
+    width: 250px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.btn {
+    border-radius: 999px;
+    width: 100px;
+    padding: 3px;
+    position: relative;
+    top: 30px;
+    font-size: 1.3rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+.category-btn:hover {
+    background-color:  rgb(145, 141, 141);
+}
+.btn:hover {
+    background-color: rgb(145, 141, 141);
 }
