@@ -1,5 +1,4 @@
 * {
-
     margin: 1px;
     padding: 0;
 
@@ -46,9 +45,13 @@ input[type=text]{
     border:  2px solid black;
     
 }
+
+
 button:hover {
     background-color: rgb(119, 119, 119);
 }
+
+
 .btn {
     position: relative;
     top: 20px;
