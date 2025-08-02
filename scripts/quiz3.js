@@ -54,6 +54,7 @@ function showQuestion() {
     btn.className = "option-btn";
     btn.onclick = () => handleAnswer(option, current.answer);
     optionsEl.appendChild(btn);
+    
   });
 }
 
@@ -78,6 +79,7 @@ function showEndButtons() {
   optionsEl.appendChild(createRestartButton());
   optionsEl.appendChild(createViewScoresButton());
   optionsEl.appendChild(createBackToWelcomeButton());
+  optionsEl.appendChild(createBackToCategoryButton());
 }
 
 function createBackToWelcomeButton() {
@@ -100,6 +102,16 @@ function createRestartButton() {
     showQuestion();
   };
   return restartBtn;
+}
+
+function createBackToCategoryButton() {
+  const backBtn = document.createElement("button");
+  backBtn.textContent = "Back to Category Page";
+  backBtn.className = "control-btn";
+  backBtn.onclick = () => {
+    window.location.href = "../pages/categories.html"; // Adjust path if needed
+  };
+  return backBtn;
 }
 
 function createViewScoresButton() {
