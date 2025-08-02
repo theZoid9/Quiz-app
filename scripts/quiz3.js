@@ -8,6 +8,7 @@
 
   let questions = [];
   let currentIndex = 0;
+  let correctCount = 0; // Initialize score counter
 
   // Load all questions from JSON
   fetch("../data.json")
@@ -25,24 +26,29 @@ function showQuestion() {
   // Clear the feedback message when showing a new question
   msg.textContent = "";
 
-  // If no more questions, show completion message
+  // Shuffle questions if starting a new quiz
+  if (currentIndex === 0 && questions.length > 0) {
+    questions = [...questions].sort(() => Math.random() - 0.5);
+  }
+
   if (currentIndex >= questions.length) {
     questionEl.textContent = "🎉 Quiz Complete!";
-    optionsEl.innerHTML = "";
+    showEndButtons();
     return;
   }
 
   const current = questions[currentIndex];
   const options = current.Possible || current.options || [];
 
+  // Shuffle options array
+  const shuffledOptions = [...options].sort(() => Math.random() - 0.5);
+
   // Show the current question
   questionEl.textContent = current.Question;
 
-  // Clear previous options
   optionsEl.innerHTML = "";
 
-  // Create buttons for answer options
-  options.forEach(option => {
+  shuffledOptions.forEach(option => {
     const btn = document.createElement("button");
     btn.textContent = option;
     btn.className = "option-btn";
@@ -56,6 +62,7 @@ function handleAnswer(selected, correct) {
 
   if (selected === correct) {
     msg.textContent = "✅ Correct!";
+    correctCount++; // Increment score
   } else {
     msg.textContent = `❌ Wrong! Correct answer: ${correct}`;
   }
@@ -65,7 +72,36 @@ function handleAnswer(selected, correct) {
   setTimeout(showQuestion, 1700);
  }
 
+
+ function showEndButtons() {
+  // Clear previous buttons if any
+  optionsEl.innerHTML = "";
+
+  // Create Restart Quiz button
+  const restartBtn = document.createElement("button");
+  restartBtn.textContent = "Restart Quiz";
+  restartBtn.className = "control-btn";
+  restartBtn.onclick = () => {
+    currentIndex = 0;
+       correctCount = 0; // Reset score
+    showQuestion();
+  };
+
+  // Create View Scores button (if you’re tracking score)
+  const viewScoresBtn = document.createElement("button");
+  viewScoresBtn.textContent = "View Scores";
+  viewScoresBtn.className = "control-btn";
+  viewScoresBtn.onclick = () => {
+    const msg = document.getElementById("output");
+    msg.textContent = `You answered ${correctCount} out of ${questions.length} questions.`;
+  };
+
+  // Append buttons
+  optionsEl.appendChild(restartBtn);
+  optionsEl.appendChild(viewScoresBtn);
+}
+
  document.addEventListener("DOMContentLoaded", () => {
-   // Show the first question when the page loads
+
    showQuestion();
 })
