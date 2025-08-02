@@ -1,0 +1,60 @@
+
+
+
+#quiz-container {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-rows: auto;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    background-color: #f8f9fa;
+
+}
+
+#quiz-container h2 {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    color: #343a40;
+    border: 2px solid #ced4da;
+    width: 550px;
+
+}
+
+#options {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 560px;
+    width: 550px;
+    background-color: rgb(221, 221, 221);
+    border: 6px solid #d4d9df;
+    border-radius: 20px;
+}
+
+.option-btn{
+    
+    padding: 10px;
+    margin: 5px;
+    border: 2px solid;
+    width: 250px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-family: 'Courier New', Courier, monospace;
+    cursor: pointer;
+}
+
+.option-btn:hover {
+    background-color: rgb(145, 141, 141);
+}
+
+#output {
+    width: 550px;
+    padding: 10px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid #ced4da;
+}

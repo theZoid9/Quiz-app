@@ -1,4 +1,4 @@
-window.onload = function () {
+
   const questionEl = document.getElementById("question");
   const optionsEl = document.getElementById("options");
 
@@ -64,4 +64,8 @@ function handleAnswer(selected, correct) {
 
   setTimeout(showQuestion, 1700);
  }
-}
+
+ document.addEventListener("DOMContentLoaded", () => {
+   // Show the first question when the page loads
+   showQuestion();
+})
