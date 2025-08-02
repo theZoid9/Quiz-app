@@ -13,13 +13,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    top: 200px;
-    left: 200px;
-    max-width: 200px;
-    min-height: 360px;
-    min-width: 350px;
+    height: 460px;
+    width: 450px;
     margin: 20px;
-    padding: 20px;
     background-color: rgb(221, 221, 221);
     border: 6px solid;
     border-radius: 20px;

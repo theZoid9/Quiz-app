@@ -72,22 +72,37 @@ function handleAnswer(selected, correct) {
   setTimeout(showQuestion, 1700);
  }
 
+function showEndButtons() {
+  optionsEl.textContent = "";
 
- function showEndButtons() {
-  // Clear previous buttons if any
-  optionsEl.innerHTML = "";
+  optionsEl.appendChild(createRestartButton());
+  optionsEl.appendChild(createViewScoresButton());
+  optionsEl.appendChild(createBackToWelcomeButton());
+}
 
-  // Create Restart Quiz button
+function createBackToWelcomeButton() {
+  const backBtn = document.createElement("button");
+  backBtn.textContent = "Back to Welcome Page";
+  backBtn.className = "control-btn";
+  backBtn.onclick = () => {
+    window.location.href = "../pages/welcome.html"; // Adjust path if needed
+  };
+  return backBtn;
+}
+
+function createRestartButton() {
   const restartBtn = document.createElement("button");
   restartBtn.textContent = "Restart Quiz";
   restartBtn.className = "control-btn";
   restartBtn.onclick = () => {
     currentIndex = 0;
-       correctCount = 0; // Reset score
+    correctCount = 0;
     showQuestion();
   };
+  return restartBtn;
+}
 
-  // Create View Scores button (if you’re tracking score)
+function createViewScoresButton() {
   const viewScoresBtn = document.createElement("button");
   viewScoresBtn.textContent = "View Scores";
   viewScoresBtn.className = "control-btn";
@@ -95,10 +110,7 @@ function handleAnswer(selected, correct) {
     const msg = document.getElementById("output");
     msg.textContent = `You answered ${correctCount} out of ${questions.length} questions.`;
   };
-
-  // Append buttons
-  optionsEl.appendChild(restartBtn);
-  optionsEl.appendChild(viewScoresBtn);
+  return viewScoresBtn;
 }
 
  document.addEventListener("DOMContentLoaded", () => {
