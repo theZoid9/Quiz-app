@@ -87,7 +87,7 @@ function createBackToWelcomeButton() {
   backBtn.textContent = "Back to Welcome Page";
   backBtn.className = "control-btn";
   backBtn.onclick = () => {
-    window.location.href = "../pages/welcome.html"; // Adjust path if needed
+    window.location.href = "index.html"; // Adjust path if needed
   };
   return backBtn;
 }
@@ -109,7 +109,7 @@ function createBackToCategoryButton() {
   backBtn.textContent = "Back to Category Page";
   backBtn.className = "control-btn";
   backBtn.onclick = () => {
-    window.location.href = "../pages/categories.html"; // Adjust path if needed
+    window.location.href = "categories.html"; // Adjust path if needed
   };
   return backBtn;
 }
