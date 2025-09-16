@@ -2,18 +2,10 @@
   "name": "quiz-app",
   "version": "1.0.0",
   "description": "A simple quiz web app",
-  "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "serve -s ."
   },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
   "dependencies": {
-    "express": "^4.19.0"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.0"
+    "serve": "^14.2.0"
   }
 }
