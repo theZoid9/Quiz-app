@@ -17,7 +17,7 @@
       // Filter questions by category ID (data-id)
       console.log("Loaded data:", data);
       console.log("selectedId:", selectedId);
-      questions = data.filter(question  => question ["data-id"] === selectedId);
+      questions = data.filter(question  => question ["data-id"].toString() === selectedId);
      console.log("Filtered questions:", questions);
       showQuestion();
       
@@ -128,3 +128,6 @@ function createViewScoresButton() {
   return viewScoresBtn;
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+   showQuestion();
+})
