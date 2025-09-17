@@ -9,6 +9,7 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+//✅ Serve all static files (HTML, CSS, JS) from the public folder
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ✅ Fallback route to serve index.html (or quiz.html) for unknown paths
@@ -17,8 +18,7 @@ app.get('*', (req, res) => {
 });
 
 
-// Serve static files
-app.use(express.static(path.join(__dirname, 'public'), { maxAge: '1d' }));
+
 // API route example
 app.get('/api/questions/:id', (req, res) => {
   const id = req.params.id;
