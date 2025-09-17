@@ -24,15 +24,25 @@
     });
 
 
-fetch(`/api/questions/${selectedId}`)
+const backendUrl = "https://your-render-backend.onrender.com"; // replace with your Render backend URL
+
+fetch(`${backendUrl}/api/questions/${selectedId}`)
   .then(res => res.json())
   .then(data => {
-    console.log("API response:", data);
-    // Now use data.questions to populate the quiz
-    questions = data.questions; 
+    console.log("API response:", data); 
+    questions = data.questions || [];
+    if (!questions.length) {
+      questionEl.textContent = "❌ No questions found.";
+      optionsEl.innerHTML = "";
+      return;
+    }
     showQuestion();
   })
-  .catch(err => console.error(err));
+  .catch(err => {
+    console.error("Error fetching quiz:", err);
+    questionEl.textContent = "❌ Failed to load quiz.";
+    optionsEl.innerHTML = "";
+  });
 
 function showQuestion() {
   const msg = document.getElementById("output");

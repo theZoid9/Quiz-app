@@ -1,48 +1,51 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import cors from 'cors';
 import fs from 'fs';
-
+import cors from 'cors';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
-
-//✅ Serve all static files (HTML, CSS, JS) from the public folder
+// Serve static files (CSS, JS, images)
 app.use(express.static(path.join(__dirname, 'project-root')));
 
-// SPA fallback: send quiz.html if no static file matches
-app.use((req, res, next) => {
-  const quizFile = path.join(__dirname, 'project-root', 'quiz.html');
-  if (fs.existsSync(quizFile)) {
-    res.sendFile(quizFile);
-  } else {
-    res.status(404).send('Not Found');
-  }
-});
-
-
-
-
-// API route example
+// API route that reads data.json
 app.get('/api/questions/:id', (req, res) => {
   const id = req.params.id;
-  res.json({ quizId: id, questions: [] });
+
+  const filePath = path.join(__dirname, 'data.json');
+
+  // Read JSON file
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'Failed to read questions' });
+    }
+
+    const allQuestions = JSON.parse(data);
+    const questions = allQuestions.filter(q => q["data-id"] === id);
+
+    res.json({ quizId: id, questions });
+  });
 });
 
-// Catch-all for unknown routes
+// Serve HTML pages
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'project-root', 'index.html'));
+});
+app.get('/quiz', (req, res) => {
+  res.sendFile(path.join(__dirname, 'project-root', 'quiz.html'));
+});
+app.get('/categories', (req, res) => {
+  res.sendFile(path.join(__dirname, 'project-root', 'categories.html'));
+});
+
+// 404 handler
 app.use((req, res) => res.status(404).send('Page not found'));
-
-// Global error handler
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Internal Server Error');
-});
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
