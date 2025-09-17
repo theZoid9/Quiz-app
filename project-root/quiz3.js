@@ -128,6 +128,3 @@ function createViewScoresButton() {
   return viewScoresBtn;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-   showQuestion();
-})
