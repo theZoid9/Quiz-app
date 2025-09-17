@@ -10,12 +10,18 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 //✅ Serve all static files (HTML, CSS, JS) from the public folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'project-root')));
 
-// ✅ Fallback route to serve index.html (or quiz.html) for unknown paths
-app.get('/:any(*)', (req, res) => {
-  res.sendFile(path.join(__dirname, 'project-root', 'index.html'));
+// SPA fallback: send quiz.html if no static file matches
+app.use((req, res, next) => {
+  const quizFile = path.join(__dirname, 'project-root', 'index.html');
+  if (fs.existsSync(quizFile)) {
+    res.sendFile(quizFile);
+  } else {
+    res.status(404).send('Not Found');
+  }
 });
+
 
 
 
