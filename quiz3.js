@@ -11,7 +11,7 @@
   let correctCount = 0; // Initialize score counter
 
   // Load all questions from JSON
-  fetch("../data.json")
+  fetch("data.json")
     .then(res => res.json())
     .then(data => {
       // Filter questions by category ID (data-id)
