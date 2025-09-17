@@ -13,7 +13,8 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 
 // Serve static files (CSS, JS, images)
-app.use(express.static(path.join(__dirname, 'project-root')));
+const dataPath = path.join(__dirname, 'data.json');
+
 
 // API route that reads data.json
 app.get('/api/questions/:id', (req, res) => {
