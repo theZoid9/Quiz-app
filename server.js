@@ -10,7 +10,9 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+app.use(cors({
+  origin: '*' // allow all origins, or replace '*' with your frontend domain
+}));
 
 // Serve static files (CSS, JS, images)
 const dataPath = path.join(__dirname, 'data.json');
