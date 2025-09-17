@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A simple quiz web app",
   "scripts": {
-    "start": "serve ."
+    "start": "serve . project-root"
   },
   "dependencies": {
     "serve": "^14.2.0"
