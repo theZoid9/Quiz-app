@@ -11,25 +11,17 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
+
 // Serve static files (CSS, JS, images)
 app.use(express.static(path.join(__dirname, 'project-root')));
 
 // API route that reads data.json
 app.get('/api/questions/:id', (req, res) => {
   const id = req.params.id;
-
-  const filePath = path.join(__dirname, 'data.json');
-
-  // Read JSON file
-  fs.readFile(filePath, 'utf8', (err, data) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).json({ error: 'Failed to read questions' });
-    }
-
-    const allQuestions = JSON.parse(data);
-    const questions = allQuestions.filter(q => q["data-id"] === id);
-
+  fs.readFile(dataPath, 'utf8', (err, file) => {
+    if (err) return res.status(500).json({ error: 'Failed to read questions' });
+    const all = JSON.parse(file);
+    const questions = all.filter(q => q['data-id'].toString() === id);
     res.json({ quizId: id, questions });
   });
 });

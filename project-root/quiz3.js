@@ -24,25 +24,21 @@
     });
 
 
-const backendUrl = "https://your-render-backend.onrender.com"; // replace with your Render backend URL
+const backendUrl =
+  window.location.hostname === 'localhost'
+    ? 'http://localhost:3000'
+    : 'https://your-backend-on-render.onrender.com'; // <-- Replace with your Render backend URL
 
-fetch(`${backendUrl}/api/questions/${selectedId}`)
-  .then(res => res.json())
-  .then(data => {
-    console.log("API response:", data); 
-    questions = data.questions || [];
-    if (!questions.length) {
-      questionEl.textContent = "❌ No questions found.";
-      optionsEl.innerHTML = "";
-      return;
-    }
-    showQuestion();
+
+fetch(`${backendUrl}/api/questions/${selectedId}`, { mode: 'cors' })
+  .then(res => {
+    console.log('Response status:', res.status, res.headers.get('content-type'));
+    return res.text(); // temporarily read as text to see what you got
   })
-  .catch(err => {
-    console.error("Error fetching quiz:", err);
-    questionEl.textContent = "❌ Failed to load quiz.";
-    optionsEl.innerHTML = "";
-  });
+  .then(text => {
+    console.log('Raw response text:', text);
+    return JSON.parse(text); // then parse manually
+  })
 
 function showQuestion() {
   const msg = document.getElementById("output");
