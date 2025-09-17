@@ -2,10 +2,14 @@
   "name": "quiz-app",
   "version": "1.0.0",
   "description": "A simple quiz web app",
+  "type": "module",
   "scripts": {
     "start": "serve project-root"
   },
   "dependencies": {
+    "18": "^0.0.0",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
     "serve": "^14.2.0"
   }
 }

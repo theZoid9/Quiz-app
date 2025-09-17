@@ -1,20 +1,12 @@
 import express from 'express';
 import path from 'path';
-import helmet from 'helmet';
-import compression from 'compression';
-import morgan from 'morgan';
+
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Security headers
-app.use(helmet());
 
-// Logging
-app.use(morgan('combined'));
-
-// Compress responses
-app.use(compression());
 
 // Serve static files
 app.use(express.static(path.join(process.cwd(), 'public'), { maxAge: '1d' }));
