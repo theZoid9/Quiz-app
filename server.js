@@ -9,6 +9,12 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(express.static(path.join(__dirname, 'public')));
+
+// ✅ Fallback route to serve index.html (or quiz.html) for unknown paths
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'project-root', 'index.html'));
+});
 
 
 // Serve static files
