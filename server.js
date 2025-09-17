@@ -1,6 +1,9 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import cors from 'cors';
+import fs from 'fs';
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -9,12 +12,14 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(cors());
+
 //✅ Serve all static files (HTML, CSS, JS) from the public folder
 app.use(express.static(path.join(__dirname, 'project-root')));
 
 // SPA fallback: send quiz.html if no static file matches
 app.use((req, res, next) => {
-  const quizFile = path.join(__dirname, 'project-root', 'index.html');
+  const quizFile = path.join(__dirname, 'project-root', 'quiz.html');
   if (fs.existsSync(quizFile)) {
     res.sendFile(quizFile);
   } else {

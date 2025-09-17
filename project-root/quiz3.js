@@ -23,6 +23,17 @@
       
     });
 
+
+fetch(`/api/questions/${selectedId}`)
+  .then(res => res.json())
+  .then(data => {
+    console.log("API response:", data);
+    // Now use data.questions to populate the quiz
+    questions = data.questions; 
+    showQuestion();
+  })
+  .catch(err => console.error(err));
+
 function showQuestion() {
   const msg = document.getElementById("output");
 
