@@ -4,7 +4,7 @@
 
   // Get category ID from URL
   const urlParams = new URLSearchParams(window.location.search);
-  const selectedId = urlParams.get("id");
+  const selectedId = urlParams.get("id") || "1";
 
   let questions = [];
   let currentIndex = 0;
