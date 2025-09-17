@@ -15,7 +15,10 @@
     .then(res => res.json())
     .then(data => {
       // Filter questions by category ID (data-id)
+      console.log("Loaded data:", data);
+      console.log("selectedId:", selectedId);
       questions = data.filter(question  => question ["data-id"] === selectedId);
+     console.log("Filtered questions:", questions);
       showQuestion();
       
     });
