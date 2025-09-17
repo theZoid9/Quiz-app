@@ -14,9 +14,9 @@ app.use(cors({
   origin: '*' // allow all origins, or replace '*' with your frontend domain
 }));
 
+app.use(express.static(path.join(__dirname, 'project-root')));
 // Serve static files (CSS, JS, images)
-const dataPath = path.join(__dirname, 'data.json');
-
+const dataPath = path.join(__dirname, 'project-root', 'data.json');
 
 // API route that reads data.json
 app.get('/api/questions/:id', (req, res) => {
