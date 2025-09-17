@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ✅ Fallback route to serve index.html (or quiz.html) for unknown paths
-app.get('*', (req, res) => {
+app.get('/:any(*)', (req, res) => {
   res.sendFile(path.join(__dirname, 'project-root', 'index.html'));
 });
 
