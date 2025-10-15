@@ -17,7 +17,7 @@ Simple navigation (restart quiz, return to categories, or back to the welcome pa
 
 ## Live Demo
 
-The app is live here: [Your Render Domain Link]
+The app is live here: https://quiz-app-1-3614.onrender.com
 
 ## How It Works
 
