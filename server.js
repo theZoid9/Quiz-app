@@ -31,13 +31,13 @@ app.get('/api/questions/:id', (req, res) => {
 
 // Serve HTML pages
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'project-root', 'index.html'));
+  res.sendFile(path.join(__dirname, 'project-root', 'src/public/index.html'));
 });
 app.get('/quiz', (req, res) => {
-  res.sendFile(path.join(__dirname, 'project-root', 'quiz.html'));
+  res.sendFile(path.join(__dirname, 'project-root', 'src/public/quiz.html'));
 });
 app.get('/categories', (req, res) => {
-  res.sendFile(path.join(__dirname, 'project-root', 'categories.html'));
+  res.sendFile(path.join(__dirname, 'project-root', 'src/public/categories.html'));
 });
 
 // 404 handler
