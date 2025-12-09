@@ -10,37 +10,72 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors({
-  origin: '*' // allow all origins, or replace '*' with your frontend domain
-}));
+app.use(cors({ origin: "*" }));
 
-app.use(express.static(path.join(__dirname, 'project-root')));
-// Serve static files (CSS, JS, images)
-const dataPath = path.join(__dirname, 'project-root', 'data.json');
+// -----------------------------------------------------
+// STATIC FILES
+// -----------------------------------------------------
 
-// API route that reads data.json
-app.get('/api/questions/:id', (req, res) => {
+// Serve everything in /src/public (HTML, CSS, JS)
+app.use(express.static(path.join(__dirname, "src", "public")));
+
+// Expose /src/data/data.json at /data/data.json
+app.use("/data", express.static(path.join(__dirname, "src", "data")));
+
+// Serve src folder too (so quiz.js is reachable)
+app.use("/src", express.static(path.join(__dirname, "src")));
+
+// -----------------------------------------------------
+// API ROUTE FOR FILTERED QUESTIONS
+// -----------------------------------------------------
+const dataPath = path.join(__dirname, "src", "data", "data.json");
+
+app.get("/api/questions/:id", (req, res) => {
   const id = req.params.id;
-  fs.readFile(dataPath, 'utf8', (err, file) => {
-    if (err) return res.status(500).json({ error: 'Failed to read questions' });
+
+  fs.readFile(dataPath, "utf8", (err, file) => {
+    if (err) {
+      return res.status(500).json({ error: "Failed to read questions" });
+    }
+
     const all = JSON.parse(file);
-    const questions = all.filter(q => q['data-id'].toString() === id);
-    res.json({ quizId: id, questions });
+    const filtered = all.filter(q => q["data-id"].toString() === id);
+
+    res.json({ quizId: id, questions: filtered });
   });
 });
 
-// Serve HTML pages
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'project-root', 'index.html'));
-});
-app.get('/quiz', (req, res) => {
-  res.sendFile(path.join(__dirname, 'project-root', 'quiz.html'));
-});
-app.get('/categories', (req, res) => {
-  res.sendFile(path.join(__dirname, 'project-root', 'categories.html'));
+
+// -----------------------------------------------------
+// HTML ROUTES
+// -----------------------------------------------------
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "src", "public", "index.html"));
 });
 
-// 404 handler
-app.use((req, res) => res.status(404).send('Page not found'));
+app.get("/categories", (req, res) => {
+  res.sendFile(path.join(__dirname, "src", "public", "categories.html"));
+});
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.get("/quiz", (req, res) => {
+  res.sendFile(path.join(__dirname, "src", "public", "quiz.html"));
+});
+
+app.get("/result", (req, res) => {
+  res.sendFile(path.join(__dirname, "src", "public", "result.html"));
+});
+
+
+// -----------------------------------------------------
+// 404
+// -----------------------------------------------------
+
+app.use((req, res) => res.status(404).send("Page not found"));
+
+
+// -----------------------------------------------------
+
+app.listen(PORT, () =>
+  console.log(`Server running at http://localhost:${PORT}`)
+);
