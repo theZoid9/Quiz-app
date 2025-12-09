@@ -11,14 +11,14 @@
   let correctCount = 0; // Initialize score counter
 
   // Load all questions from JSON
-  fetch("data.json")
+fetch("/data/data.json")
     .then(res => res.json())
     .then(data => {
       // Filter questions by category ID (data-id)
       console.log("Loaded data:", data);
       console.log("selectedId:", selectedId);
       questions = data.filter(question  => question ["data-id"].toString() === selectedId);
-     console.log("Filtered questions:", questions);
+      console.log("Filtered questions:", questions);
       showQuestion();
       
     });
@@ -107,7 +107,7 @@ function createBackToWelcomeButton() {
   backBtn.textContent = "Back to Welcome Page";
   backBtn.className = "control-btn";
   backBtn.onclick = () => {
-    window.location.href = "index.html"; // Adjust path if needed
+    window.location.href = "src/public/index.html"; 
   };
   return backBtn;
 }
@@ -129,7 +129,7 @@ function createBackToCategoryButton() {
   backBtn.textContent = "Back to Category Page";
   backBtn.className = "control-btn";
   backBtn.onclick = () => {
-    window.location.href = "categories.html"; // Adjust path if needed
+    window.location.href = "src/public/categories.html"; 
   };
   return backBtn;
 }
