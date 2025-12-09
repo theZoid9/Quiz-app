@@ -24,7 +24,7 @@ app.use("/data", express.static(path.join(__dirname, "src", "data")));
 
 // Serve src folder too (so quiz.js is reachable)
 app.use("/src", express.static(path.join(__dirname, "src")));
-
+app.use(cors({ origin: 'https://quiz-app-1-3614.onrender.com' }));
 // -----------------------------------------------------
 // API ROUTE FOR FILTERED QUESTIONS
 // -----------------------------------------------------
