@@ -66,9 +66,7 @@ app.get("/result", (req, res) => {
   res.sendFile(path.join(__dirname, "src", "public", "result.html"));
 });
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "src", "public", "quiz.html"));
-});
+
 // -----------------------------------------------------
 // 404
 // -----------------------------------------------------
